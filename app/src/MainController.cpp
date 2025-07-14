@@ -3,6 +3,9 @@
 //
 
 #include "MainController.hpp"
+
+#include "../../engine/libs/glfw/include/GLFW/glfw3.h"
+
 #include <engine/platform/PlatformController.hpp>
 #include <engine/graphics/GraphicsController.hpp>
 #include <engine/graphics/OpenGL.hpp>
@@ -83,6 +86,12 @@ void MainController::draw_busStop() {
     //shader
     engine::resources::Shader *shader = resource->shader("basic");
     shader->use();
+
+    shader->set_vec3("dirLight.direction", glm::vec3(-1.0f, -1.0f, -1.0f));
+    shader->set_vec3("dirLight.ambient", glm::vec3(0.2f));
+    shader->set_vec3("dirLight.diffuse", glm::vec3(0.6f));
+    shader->set_vec3("dirLight.specular", glm::vec3(1.0f));
+
     shader->set_mat4("projection", graphics->projection_matrix());
     shader->set_mat4("view", graphics->camera()->view_matrix());
     glm::mat4 model = glm::mat4(1.0f);
@@ -103,6 +112,39 @@ void MainController::draw_jellyfish() {
     //shader
     engine::resources::Shader *shader = resource->shader("basic");
     shader->use();
+
+    float time = glfwGetTime();
+
+    float t = (sin(time) + 1.0f) / 2.0f;
+
+    // Interpolacija između dve boje
+    glm::vec3 purple = glm::vec3(0.6f, 0.0f, 0.8f);
+    glm::vec3 blue = glm::vec3(0.0f, 0.5f, 1.0f);
+    glm::vec3 animatedColor = (1.0f - t) * purple + t * blue;
+
+    glm::vec3 jellyfishPositions[4] = {
+            glm::vec3(5.0f, 0.0f, 0.0f),
+            glm::vec3(2.0f, 0.0f, -5.0f),
+            glm::vec3(-6.0f, 0.0f, 0.0f),
+            glm::vec3(-3.0f, 0.0f, 5.0f)
+    };
+
+    //glm::vec3 jellyfishColor = glm::vec3(0.6f, 0.9f, 1.0f);
+
+    for (int i = 0; i < 4; ++i) {
+        std::string idx = std::to_string(i);
+        shader->set_vec3("pointLights[" + idx + "].position", jellyfishPositions[i]);
+        shader->set_vec3("pointLights[" + idx + "].ambient", animatedColor * 0.05f);
+        shader->set_vec3("pointLights[" + idx + "].diffuse", animatedColor * 0.8f);
+        shader->set_vec3("pointLights[" + idx + "].specular", glm::vec3(1.0f));
+
+        shader->set_float("pointLights[" + idx + "].constant", 1.0f);
+        shader->set_float("pointLights[" + idx + "].linear", 0.09f);
+        shader->set_float("pointLights[" + idx + "].quadratic", 0.032f);
+    }
+
+    shader->set_vec3("viewPos", graphics->camera()->Position);
+
     shader->set_mat4("projection", graphics->projection_matrix());
     shader->set_mat4("view", graphics->camera()->view_matrix());
     glm::mat4 model = glm::mat4(1.0f);
@@ -122,6 +164,12 @@ void MainController::draw_jellyfish() {
     model3 = glm::translate(model3, glm::vec3(-6.0f, 0.0f, 0.0f));
     model3 = glm::scale(model3, glm::vec3(0.8f));
     shader->set_mat4("model", model3);
+    jellyfish->draw(shader);
+
+    glm::mat4 model4 = glm::mat4(1.0f);
+    model3 = glm::translate(model4, glm::vec3(-3.0f, 0.0f, 5.0f));
+    model3 = glm::scale(model4, glm::vec3(0.8f));
+    shader->set_mat4("model", model4);
     jellyfish->draw(shader);
 
 }
