@@ -1,6 +1,10 @@
 {
   "resources": {
     "models": {
+      "underwater_stop": {
+        "path": "underwater_stop/underwater_stop.obj",
+        "flip_uvs": true
+      }
     }
   },
   "window": {
