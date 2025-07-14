@@ -37,6 +37,10 @@ void MainPlatformEventObserver::on_scroll(engine::platform::MousePosition positi
     graphics->perspective_params().FOV = glm::radians(camera->Zoom);
 }
 
+void app::MainPlatformEventObserver::on_window_resize(int width, int height) {
+    // jos uvek nista
+}
+
 void MainController::initialize() {
     auto platform = engine::platform::PlatformController::get<engine::platform::PlatformController>();
     platform->register_platform_event_observer(std::make_unique<MainPlatformEventObserver>());
@@ -75,7 +79,7 @@ void MainController::draw_busStop() {
     //Model
     auto resource = engine::core::Controller::get<engine::resources::ResourcesController>();
     auto graphics = engine::core::Controller::get<engine::graphics::GraphicsController>();
-    engine::resources::Model *temple = resource->model("underwater_stop");
+    engine::resources::Model *bus = resource->model("underwater_stop");
     //shader
     engine::resources::Shader *shader = resource->shader("basic");
     shader->use();
@@ -84,16 +88,27 @@ void MainController::draw_busStop() {
     glm::mat4 model = glm::mat4(1.0f);
     model = glm::translate(model, glm::vec3(0.0f, -2.0f, -2.0f));
     // model = glm::rotate(model, glm::radians(90.0f), glm::vec3(1.0f, 1.0f, 1.0f));
-    model = glm::scale(model, glm::vec3(0.5f));
+    model = glm::scale(model, glm::vec3(1.0f));
     shader->set_mat4("model", model);
 
-    temple->draw(shader);
+    bus->draw(shader);
 
 }
 
 void MainController::begin_draw() { engine::graphics::OpenGL::clear_buffers(); }
 
-void MainController::draw() { draw_busStop(); }
+void MainController::draw_skybox() {
+    auto resources = engine::core::Controller::get<engine::resources::ResourcesController>();
+    auto skybox = resources->skybox("ocean_skybox");
+    auto shader = resources->shader("skybox");
+    auto graphics = engine::core::Controller::get<engine::graphics::GraphicsController>();
+    graphics->draw_skybox(shader, skybox);
+}
+
+void MainController::draw() {
+    draw_busStop();
+    draw_skybox();
+}
 
 void MainController::end_draw() {
     auto platform = engine::core::Controller::get<engine::platform::PlatformController>();

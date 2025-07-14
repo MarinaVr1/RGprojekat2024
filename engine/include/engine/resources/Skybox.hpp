@@ -1,6 +1,6 @@
 /**
  * @file Skybox.hpp
- * @brief Defines the Skybox class that serves as the interface for skybox rendering.
+ * @brief Defines the Skybox class that serves as the interface for ocean_skybox rendering.
 */
 
 #ifndef SKYBOX_HPP
@@ -13,30 +13,30 @@
 namespace engine::resources {
 /**
 * @class Skybox
-* @brief Represents a skybox object within the OpenGL context.
+* @brief Represents a ocean_skybox object within the OpenGL context.
 */
 class Skybox {
     friend class ResourcesController;
 
 public:
     /**
-    * @brief Returns the OpenGL ID of the skybox.
-    * @returns The OpenGL ID of the skybox.
+    * @brief Returns the OpenGL ID of the ocean_skybox.
+    * @returns The OpenGL ID of the ocean_skybox.
     */
     uint32_t vao() const {
         return m_vao;
     }
 
     /**
-    * @brief Returns the OpenGL ID of the skybox texture.
-    * @returns The OpenGL ID of the skybox texture.
+    * @brief Returns the OpenGL ID of the ocean_skybox texture.
+    * @returns The OpenGL ID of the ocean_skybox texture.
     */
     uint32_t texture() const {
         return m_texture_id;
     }
 
     /**
-    * @brief Destroys the skybox object in the OpenGL context.
+    * @brief Destroys the ocean_skybox object in the OpenGL context.
     */
     void destroy();
 
@@ -50,10 +50,10 @@ private:
 
     /**
     * @brief Constructs a Skybox object.
-    * @param vao The OpenGL ID of the skybox.
-    * @param texture_id The OpenGL ID of the skybox texture.
-    * @param path The path to the skybox texture.
-    * @param name The name of the skybox.
+    * @param vao The OpenGL ID of the ocean_skybox.
+    * @param texture_id The OpenGL ID of the ocean_skybox texture.
+    * @param path The path to the ocean_skybox texture.
+    * @param name The name of the ocean_skybox.
     */
     Skybox(uint32_t vao, uint32_t texture_id, std::filesystem::path path, std::string name)
             : m_vao(vao)

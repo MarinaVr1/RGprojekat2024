@@ -3,6 +3,7 @@
 #include <engine/core/Controller.hpp>
 
 namespace app {
+
 class MainController : public engine::core::Controller {
     void initialize() override;
 
@@ -17,6 +18,8 @@ class MainController : public engine::core::Controller {
     void update() override;
 
     void draw() override;
+
+    void draw_skybox();
 
     void end_draw() override;
 
