@@ -4,6 +4,10 @@
       "underwater_stop": {
         "path": "underwater_stop/underwater_stop.obj",
         "flip_uvs": true
+      },
+      "jellyfish": {
+        "path": "jellyfish/Jellyfish2.obj",
+        "flip_uvs": true
       }
     }
   },

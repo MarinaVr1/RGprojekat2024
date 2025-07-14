@@ -88,10 +88,41 @@ void MainController::draw_busStop() {
     glm::mat4 model = glm::mat4(1.0f);
     model = glm::translate(model, glm::vec3(0.0f, -2.0f, -2.0f));
     // model = glm::rotate(model, glm::radians(90.0f), glm::vec3(1.0f, 1.0f, 1.0f));
-    model = glm::scale(model, glm::vec3(1.0f));
+    model = glm::scale(model, glm::vec3(3.0f));
     shader->set_mat4("model", model);
 
     bus->draw(shader);
+
+}
+
+void MainController::draw_jellyfish() {
+    //Model
+    auto resource = engine::core::Controller::get<engine::resources::ResourcesController>();
+    auto graphics = engine::core::Controller::get<engine::graphics::GraphicsController>();
+    engine::resources::Model *jellyfish = resource->model("jellyfish");
+    //shader
+    engine::resources::Shader *shader = resource->shader("basic");
+    shader->use();
+    shader->set_mat4("projection", graphics->projection_matrix());
+    shader->set_mat4("view", graphics->camera()->view_matrix());
+    glm::mat4 model = glm::mat4(1.0f);
+    model = glm::translate(model, glm::vec3(5.0f, 0.0f, 0.0f));
+    // model = glm::rotate(model, glm::radians(90.0f), glm::vec3(1.0f, 1.0f, 1.0f));
+    model = glm::scale(model, glm::vec3(0.8f));
+    shader->set_mat4("model", model);
+
+    jellyfish->draw(shader);
+    glm::mat4 model2 = glm::mat4(1.0f);
+    model2 = glm::translate(model2, glm::vec3(2.0f, 0.0f, -5.0f));
+    model2 = glm::scale(model2, glm::vec3(0.8f));
+    shader->set_mat4("model", model2);
+    jellyfish->draw(shader);
+
+    glm::mat4 model3 = glm::mat4(1.0f);
+    model3 = glm::translate(model3, glm::vec3(-6.0f, 0.0f, 0.0f));
+    model3 = glm::scale(model3, glm::vec3(0.8f));
+    shader->set_mat4("model", model3);
+    jellyfish->draw(shader);
 
 }
 
@@ -107,6 +138,7 @@ void MainController::draw_skybox() {
 
 void MainController::draw() {
     draw_busStop();
+    draw_jellyfish();
     draw_skybox();
 }
 

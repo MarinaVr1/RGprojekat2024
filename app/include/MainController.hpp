@@ -11,6 +11,8 @@ class MainController : public engine::core::Controller {
 
     void draw_busStop();
 
+    void draw_jellyfish();
+
     void begin_draw() override;
 
     void update_camera();
