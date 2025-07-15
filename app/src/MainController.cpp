@@ -82,7 +82,31 @@ void MainController::update_camera() {
     camera->zoom(mouse.scroll);
 }
 
-void MainController::update() { update_camera(); }
+void MainController::update() {
+    update_camera();
+    auto platform = engine::core::Controller::get<engine::platform::PlatformController>();
+
+    if (!submarineActive && platform->key(engine::platform::KeyId::KEY_LEFT).is_down()) {
+        submarineActive = true;
+        submarineVisible = true;
+        submarineTimer = 0.0f;
+
+        submarineCounter++;
+        submarineFromLeft = (submarineCounter % 2 == 0);// određujemo pravac samo ovde
+    }
+
+    if (submarineActive) {
+        submarineTimer += platform->dt();
+
+        if (submarineTimer > 1.0f && submarineTimer < 1.5f) { if (submarineCounter % 2 == 1) { garyVisible = false; } else { garyVisible = true; } }
+
+        if (submarineTimer > 5.0f) {
+            submarineActive = false;
+            submarineVisible = false;
+            submarineTimer = 0.0f;
+        }
+    }
+}
 
 void MainController::draw_busStop() {
     //Model
@@ -181,10 +205,60 @@ void MainController::draw_jellyfish() {
 }
 
 void MainController::draw_submarine() {
-    //Model
+    if (!submarineVisible) return;
+
     auto resource = engine::core::Controller::get<engine::resources::ResourcesController>();
     auto graphics = engine::core::Controller::get<engine::graphics::GraphicsController>();
+    auto platform = engine::core::Controller::get<engine::platform::PlatformController>();
+
     engine::resources::Model *submarine = resource->model("submarine");
+    engine::resources::Shader *shader = resource->shader("basic");
+    shader->use();
+
+    shader->set_vec3("dirLight.direction", glm::vec3(-1.0f, -1.0f, -1.0f));
+    shader->set_vec3("dirLight.ambient", glm::vec3(0.2f));
+    shader->set_vec3("dirLight.diffuse", glm::vec3(0.6f));
+    shader->set_vec3("dirLight.specular", glm::vec3(1.0f));
+
+    shader->set_mat4("projection", graphics->projection_matrix());
+    shader->set_mat4("view", graphics->camera()->view_matrix());
+
+    glm::vec3 stopPos = glm::vec3(3.0f, 0.5f, -2.0f);
+
+    glm::vec3 startPos = submarineFromLeft
+                             ? glm::vec3(3.0f, 0.5f, -10.0f)
+                             : glm::vec3(3.0f, 0.5f, 10.0f);
+
+    glm::vec3 exitPos = submarineFromLeft
+                            ? glm::vec3(3.0f, 0.5f, 10.0f)
+                            : glm::vec3(3.0f, 0.5f, -10.0f);
+
+    glm::vec3 submarinePos;
+
+    if (submarineTimer < 1.0f) {
+        float t = submarineTimer / 1.0f;
+        submarinePos = glm::mix(startPos, stopPos, t);
+    } else if (submarineTimer < 4.0f) { submarinePos = stopPos; } else if (submarineTimer < 5.0f) {
+        float t = (submarineTimer - 4.0f) / 1.0f;
+        submarinePos = glm::mix(stopPos, exitPos, t);
+    } else { return; }
+
+    glm::mat4 model = glm::mat4(1.0f);
+    model = glm::translate(model, submarinePos);
+    model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(1.0f, 0.0f, 0.0f));
+    if (!submarineFromLeft) { model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 0.0f, 1.0f)); }
+
+    model = glm::scale(model, glm::vec3(0.2f));
+    shader->set_mat4("model", model);
+
+    submarine->draw(shader);
+}
+
+void MainController::draw_gary() {
+    if (!garyVisible) return;
+    auto resource = engine::core::Controller::get<engine::resources::ResourcesController>();
+    auto graphics = engine::core::Controller::get<engine::graphics::GraphicsController>();
+    engine::resources::Model *bus = resource->model("gary");
     //shader
     engine::resources::Shader *shader = resource->shader("basic");
     shader->use();
@@ -197,12 +271,41 @@ void MainController::draw_submarine() {
     shader->set_mat4("projection", graphics->projection_matrix());
     shader->set_mat4("view", graphics->camera()->view_matrix());
     glm::mat4 model = glm::mat4(1.0f);
-    model = glm::translate(model, glm::vec3(3.0f, 0.5f, -2.0f));
-    model = glm::rotate(model, glm::radians(120.0f), glm::vec3(1.0f, 1.0f, 1.0f));
-    model = glm::scale(model, glm::vec3(0.2f));
+    model = glm::translate(model, glm::vec3(1.5f, -1.0f, -2.3f));
+    model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(1.0f, 0.0f, 0.0f));
+    model = glm::scale(model, glm::vec3(0.004f));
     shader->set_mat4("model", model);
 
-    submarine->draw(shader);
+    bus->draw(shader);
+
+}
+
+void MainController::draw_sand() {
+    //Model
+    auto resource = engine::core::Controller::get<engine::resources::ResourcesController>();
+    auto graphics = engine::core::Controller::get<engine::graphics::GraphicsController>();
+    engine::resources::Model *sand = resource->model("sand");
+
+    //shader
+    engine::resources::Shader *shader = resource->shader("basic");
+    shader->use();
+
+    shader->set_vec3("dirLight.direction", glm::vec3(-1.0f, -1.0f, -1.0f));
+    shader->set_vec3("dirLight.ambient", glm::vec3(0.2f));
+    shader->set_vec3("dirLight.diffuse", glm::vec3(0.6f));
+    shader->set_vec3("dirLight.specular", glm::vec3(1.0f));
+
+
+    shader->set_mat4("projection", graphics->projection_matrix());
+    shader->set_mat4("view", graphics->camera()->view_matrix());
+    glm::mat4 model = glm::mat4(1.0f);
+    model = glm::translate(model, glm::vec3(0.0f, -2.2f, -2.0f));
+    // model = glm::rotate(model, glm::radians(90.0f), glm::vec3(1.0f, 1.0f, 1.0f));
+    model = glm::scale(model, glm::vec3(50.0f));
+    shader->set_mat4("model", model);
+
+    sand->draw(shader);
+
 
 }
 
@@ -220,6 +323,8 @@ void MainController::draw() {
     draw_busStop();
     draw_jellyfish();
     draw_submarine();
+    draw_gary();
+    draw_sand();
     draw_skybox();
 }
 

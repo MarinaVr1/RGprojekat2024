@@ -12,6 +12,13 @@
       "submarine": {
         "path": "submarine/submarine.fbx",
         "flip_uvs": true
+      },
+      "gary": {
+        "path": "gary/Gary.FBX",
+        "flip_uvs": true
+      },
+      "sand": {
+        "path": "sand/ADVANCED.obj"
       }
     }
   },
