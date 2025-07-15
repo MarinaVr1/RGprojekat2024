@@ -4,12 +4,11 @@
 
 #include "MainController.hpp"
 
-#include "../../engine/libs/glfw/include/GLFW/glfw3.h"
-
 #include <engine/platform/PlatformController.hpp>
 #include <engine/graphics/GraphicsController.hpp>
 #include <engine/graphics/OpenGL.hpp>
 #include <engine/resources/ResourcesController.hpp>
+
 #include<spdlog/spdlog.h>
 
 namespace app {
@@ -49,6 +48,13 @@ void MainController::initialize() {
     platform->register_platform_event_observer(std::make_unique<MainPlatformEventObserver>());
     auto resources = engine::core::Controller::get<engine::resources::ResourcesController>();
     engine::graphics::OpenGL::enable_depth_testing();
+
+    auto graphics = engine::core::Controller::get<engine::graphics::GraphicsController>();
+    auto camera = graphics->camera();
+    // X osa napred nazad, Y osa gore dole, Z osa levo desno
+    camera->Position = glm::vec3(7.0f, 2.0f, -2.0f);
+    camera->Yaw = 170.0f;
+    camera->Pitch = -15.0f;
     spdlog::info("MainController initialized !");
 }
 
@@ -113,14 +119,14 @@ void MainController::draw_jellyfish() {
     engine::resources::Shader *shader = resource->shader("basic");
     shader->use();
 
-    float time = glfwGetTime();
+    // float time = glfwGetTime();
 
-    float t = (sin(time) + 1.0f) / 2.0f;
+    /* float t = (sin(time) + 1.0f) / 2.0f;
 
-    // Interpolacija između dve boje
-    glm::vec3 purple = glm::vec3(0.6f, 0.0f, 0.8f);
-    glm::vec3 blue = glm::vec3(0.0f, 0.5f, 1.0f);
-    glm::vec3 animatedColor = (1.0f - t) * purple + t * blue;
+     // Interpolacija između dve boje
+     glm::vec3 purple = glm::vec3(0.6f, 0.0f, 0.8f);
+     glm::vec3 blue = glm::vec3(0.0f, 0.5f, 1.0f);
+     glm::vec3 animatedColor = (1.0f - t) * purple + t * blue;*/
 
     glm::vec3 jellyfishPositions[4] = {
             glm::vec3(5.0f, 0.0f, 0.0f),
@@ -129,7 +135,7 @@ void MainController::draw_jellyfish() {
             glm::vec3(-3.0f, 0.0f, 5.0f)
     };
 
-    //glm::vec3 jellyfishColor = glm::vec3(0.6f, 0.9f, 1.0f);
+    glm::vec3 animatedColor = glm::vec3(0.6f, 0.0f, 0.8f);
 
     for (int i = 0; i < 4; ++i) {
         std::string idx = std::to_string(i);
@@ -174,6 +180,32 @@ void MainController::draw_jellyfish() {
 
 }
 
+void MainController::draw_submarine() {
+    //Model
+    auto resource = engine::core::Controller::get<engine::resources::ResourcesController>();
+    auto graphics = engine::core::Controller::get<engine::graphics::GraphicsController>();
+    engine::resources::Model *submarine = resource->model("submarine");
+    //shader
+    engine::resources::Shader *shader = resource->shader("basic");
+    shader->use();
+
+    shader->set_vec3("dirLight.direction", glm::vec3(-1.0f, -1.0f, -1.0f));
+    shader->set_vec3("dirLight.ambient", glm::vec3(0.2f));
+    shader->set_vec3("dirLight.diffuse", glm::vec3(0.6f));
+    shader->set_vec3("dirLight.specular", glm::vec3(1.0f));
+
+    shader->set_mat4("projection", graphics->projection_matrix());
+    shader->set_mat4("view", graphics->camera()->view_matrix());
+    glm::mat4 model = glm::mat4(1.0f);
+    model = glm::translate(model, glm::vec3(3.0f, 0.5f, -2.0f));
+    model = glm::rotate(model, glm::radians(120.0f), glm::vec3(1.0f, 1.0f, 1.0f));
+    model = glm::scale(model, glm::vec3(0.2f));
+    shader->set_mat4("model", model);
+
+    submarine->draw(shader);
+
+}
+
 void MainController::begin_draw() { engine::graphics::OpenGL::clear_buffers(); }
 
 void MainController::draw_skybox() {
@@ -187,6 +219,7 @@ void MainController::draw_skybox() {
 void MainController::draw() {
     draw_busStop();
     draw_jellyfish();
+    draw_submarine();
     draw_skybox();
 }
 

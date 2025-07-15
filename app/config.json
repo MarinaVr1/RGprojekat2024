@@ -8,6 +8,10 @@
       "jellyfish": {
         "path": "jellyfish/Jellyfish2.obj",
         "flip_uvs": true
+      },
+      "submarine": {
+        "path": "submarine/submarine.fbx",
+        "flip_uvs": true
       }
     }
   },

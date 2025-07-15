@@ -13,6 +13,8 @@ class MainController : public engine::core::Controller {
 
     void draw_jellyfish();
 
+    void draw_submarine();
+
     void begin_draw() override;
 
     void update_camera();
