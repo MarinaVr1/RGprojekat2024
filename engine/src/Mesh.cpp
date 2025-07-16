@@ -44,6 +44,8 @@ Mesh::Mesh(const std::vector<Vertex> &vertices, const std::vector<uint32_t> &ind
     m_textures = std::move(textures);
 }
 
+void Mesh::add_texture(Texture *texture) { m_textures.push_back(texture); }
+
 void Mesh::draw(const Shader *shader) {
     std::unordered_map<std::string_view, uint32_t> counts;
     std::string uniform_name;

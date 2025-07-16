@@ -49,6 +49,8 @@ void MainController::initialize() {
     auto resources = engine::core::Controller::get<engine::resources::ResourcesController>();
     engine::graphics::OpenGL::enable_depth_testing();
 
+    spdlog::info("Current working directory: {}", std::filesystem::current_path().string());
+
     auto graphics = engine::core::Controller::get<engine::graphics::GraphicsController>();
     auto camera = graphics->camera();
     // X osa napred nazad, Y osa gore dole, Z osa levo desno
@@ -226,12 +228,12 @@ void MainController::draw_submarine() {
     glm::vec3 stopPos = glm::vec3(3.0f, 0.5f, -2.0f);
 
     glm::vec3 startPos = submarineFromLeft
-                             ? glm::vec3(3.0f, 0.5f, -10.0f)
-                             : glm::vec3(3.0f, 0.5f, 10.0f);
+                             ? glm::vec3(3.0f, 0.5f, -15.0f)
+                             : glm::vec3(3.0f, 0.5f, 15.0f);
 
     glm::vec3 exitPos = submarineFromLeft
-                            ? glm::vec3(3.0f, 0.5f, 10.0f)
-                            : glm::vec3(3.0f, 0.5f, -10.0f);
+                            ? glm::vec3(3.0f, 0.5f, 15.0f)
+                            : glm::vec3(3.0f, 0.5f, -15.0f);
 
     glm::vec3 submarinePos;
 
@@ -281,31 +283,64 @@ void MainController::draw_gary() {
 }
 
 void MainController::draw_sand() {
-    //Model
     auto resource = engine::core::Controller::get<engine::resources::ResourcesController>();
     auto graphics = engine::core::Controller::get<engine::graphics::GraphicsController>();
     engine::resources::Model *sand = resource->model("sand");
-
     //shader
-    engine::resources::Shader *shader = resource->shader("basic");
+    engine::resources::Shader *shader = resource->shader("parallax_sand");
     shader->use();
+
+    shader->set_mat4("projection", graphics->projection_matrix());
+    shader->set_mat4("view", graphics->camera()->view_matrix());
+    glm::mat4 model = glm::mat4(1.0f);
+    model = glm::translate(model, glm::vec3(0.0f, -1.9f, -2.0f));
+    //model = glm::scale(model, glm::vec3(1.0f));
+    shader->set_mat4("model", model);
+
+    shader->set_vec3("viewPos", graphics->camera()->Position);
+    shader->set_float("tilingFactor", 10.0f);
+    shader->set_float("heightScale", 0.1f);
+
+
+    for (auto &mesh: sand->meshes()) { mesh.textures().clear(); }
+
+
+    auto diffuse = resource->texture("Sand_006_baseColor");
+    diffuse->set_type(engine::resources::TextureType::Diffuse);
+    auto normal = resource->texture("Sand_006_normal");
+    normal->set_type(engine::resources::TextureType::Normal);
+    auto height = resource->texture("Sand_006_height");
+    height->set_type(engine::resources::TextureType::Height);
+
+    sand->set_texture(diffuse);
+    sand->set_texture(normal);
+    sand->set_texture(height);
+
 
     shader->set_vec3("dirLight.direction", glm::vec3(-1.0f, -1.0f, -1.0f));
     shader->set_vec3("dirLight.ambient", glm::vec3(0.2f));
     shader->set_vec3("dirLight.diffuse", glm::vec3(0.6f));
     shader->set_vec3("dirLight.specular", glm::vec3(1.0f));
 
+    glm::vec3 jellyfishPositions[4] = {
+            glm::vec3(5.0f, 0.0f, 0.0f),
+            glm::vec3(2.0f, 0.0f, -5.0f),
+            glm::vec3(-6.0f, 0.0f, 0.0f),
+            glm::vec3(-3.0f, 0.0f, 5.0f)
+    };
 
-    shader->set_mat4("projection", graphics->projection_matrix());
-    shader->set_mat4("view", graphics->camera()->view_matrix());
-    glm::mat4 model = glm::mat4(1.0f);
-    model = glm::translate(model, glm::vec3(0.0f, -2.2f, -2.0f));
-    // model = glm::rotate(model, glm::radians(90.0f), glm::vec3(1.0f, 1.0f, 1.0f));
-    model = glm::scale(model, glm::vec3(50.0f));
-    shader->set_mat4("model", model);
+    for (int i = 0; i < 4; ++i) {
+        std::string idx = std::to_string(i);
+        shader->set_vec3("pointLights[" + idx + "].position", jellyfishPositions[i]);
+        shader->set_vec3("pointLights[" + idx + "].ambient", glm::vec3(0.05f));
+        shader->set_vec3("pointLights[" + idx + "].diffuse", glm::vec3(0.8f, 0.2f, 1.0f));
+        shader->set_vec3("pointLights[" + idx + "].specular", glm::vec3(1.0f));
 
+        shader->set_float("pointLights[" + idx + "].constant", 1.0f);
+        shader->set_float("pointLights[" + idx + "].linear", 0.09f);
+        shader->set_float("pointLights[" + idx + "].quadratic", 0.032f);
+    }
     sand->draw(shader);
-
 
 }
 

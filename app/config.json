@@ -18,7 +18,8 @@
         "flip_uvs": true
       },
       "sand": {
-        "path": "sand/ADVANCED.obj"
+        "path": "sand/plane3.obj",
+        "flip_uvs": true
       }
     }
   },
