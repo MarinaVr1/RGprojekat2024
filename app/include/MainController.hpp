@@ -7,7 +7,7 @@
 namespace app {
 
 class MainController : public engine::core::Controller {
-
+public:
     void initialize() override;
 
     bool loop() override;
@@ -34,7 +34,6 @@ class MainController : public engine::core::Controller {
 
     bool garyVisible = true;
 
-public:
     std::string_view name() const override { return "app::MainController"; }
 
 private:

@@ -43,7 +43,7 @@ void main() {
 #version 330 core
 #define NUM_POINT_LIGHTS 4
 
-out vec4 FragColor;
+layout (location = 0) out vec4 FragColor;
 
 in VS_OUT {
     vec3 FragPos;
@@ -111,6 +111,9 @@ vec3 CalcPointLight(PointLight light, vec3 normal, vec3 viewDir, vec3 fragPos, v
 
     return (ambient + diffuse + specular);
 }
+//Koristila sam tilingFactor kako bi zapravo parallax mapping izgledao dobro na ovolikoj podlozi
+//Vec nakon sto sam odlucila da cu ovako da iskoristim ovu metodu sam shvatila da najlepse izgleda na malim modelima
+
 
 uniform vec3 viewPos;
 uniform DirLight dirLight;
@@ -129,41 +132,15 @@ vec2 ParallaxMapping(vec2 texCoords, vec3 viewDir, float heightScale) {
 
     vec2 prevTexCoords = currentTexCoords + deltaTexCoords;
 
-    // get depth after and before collision for linear interpolation
     float afterDepth = currentDepthMapValue - currentLayerDepth;
     float beforeDepth = texture(texture_height, prevTexCoords).r - currentLayerDepth + layerDepth;
 
-    // interpolation of texture coordinates
     float weight = afterDepth / (afterDepth - beforeDepth);
     vec2 finalTexCoords = prevTexCoords * weight + currentTexCoords * (1.0 - weight);
 
     return finalTexCoords;
 
 }
-/*vec2 ParallaxMapping(vec2 texCoords, vec3 viewDir) {
-    const float minLayers = 8.0;
-    const float maxLayers = 32.0;
-    float numLayers = mix(maxLayers, minLayers, max(dot(vec3(0.0, 0.0, 1.0), viewDir), 0.0));
-    float layerDepth = 1.0 / numLayers;
-    float currentLayerDepth = 0.0;
-    vec2 p = viewDir.xy * heightScale;
-    vec2 deltaTexCoords = p / numLayers;
-    vec2 currentTexCoords = texCoords;
-    float currentDepthMapValue = texture(texture_height, currentTexCoords).r;
-
-    vec2 prevTexCoords = currentTexCoords + deltaTexCoords;
-
-    // get depth after and before collision for linear interpolation
-    float afterDepth = currentDepthMapValue - currentLayerDepth;
-    float beforeDepth = texture(texture_height, prevTexCoords).r - currentLayerDepth + layerDepth;
-
-    // interpolation of texture coordinates
-    float weight = afterDepth / (afterDepth - beforeDepth);
-    vec2 finalTexCoords = prevTexCoords * weight + currentTexCoords * (1.0 - weight);
-
-    return finalTexCoords;
-
-}*/
 
 void main() {
 
@@ -171,9 +148,6 @@ void main() {
     float adjustedHeightScale = heightScale / tilingFactor;
     vec2 texCoords = ParallaxMapping(fs_in.TexCoords * tilingFactor, viewDir, adjustedHeightScale);
 
-    //if (texCoords.x < 0.0 || texCoords.y < 0.0 || texCoords.x > 1.0 || texCoords.y > 1.0) discard;
-
-    //vec2 texCoords = ParallaxMapping(fs_in.TexCoords, viewDir);
     vec3 diffuse = vec3(texture(texture_diffuse, texCoords));
     vec3 normal = vec3(texture(texture_normal, texCoords));
     normal = normalize(normal * 2.0f - 1.0f);
@@ -182,7 +156,6 @@ void main() {
     for (int i = 0; i < NUM_POINT_LIGHTS; i++) {
         result += CalcPointLight(pointLights[i], normal, viewDir, fs_in.TangentFragPos, texCoords);
     }
-    //spotlight necu sad
     FragColor = vec4(result, 1.0);
 
 

@@ -60,15 +60,13 @@ uniform DirLight dirLight;
 uniform PointLight pointLights[NUM_POINT_LIGHTS];
 
 void main() {
-    
+
     vec3 n = normalize(Normal);
     vec3 viewDir = normalize(viewPos - FragPos);
     vec3 result = CalcDirLight(dirLight, n, viewDir);
     for (int i = 0;i < NUM_POINT_LIGHTS; i++) {
         result += CalcPointLight(pointLights[i], n, viewDir, FragPos);
     }
-    //spotlight necu sad
-    //FragColor = vec4(result, 1.0);//ovde umesto ove teksture ide result
     FragColor = vec4(result, 1.0);
 }
 vec3 CalcDirLight(DirLight light, vec3 normal, vec3 viewDir) {
