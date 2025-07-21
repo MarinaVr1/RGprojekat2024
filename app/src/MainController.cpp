@@ -32,16 +32,12 @@ void MainPlatformEventObserver::on_mouse_move(engine::platform::MousePosition po
 void MainPlatformEventObserver::on_scroll(engine::platform::MousePosition position) {
     auto graphics = engine::core::Controller::get<engine::graphics::GraphicsController>();
     auto camera = graphics->camera();
-    auto platform = engine::platform::PlatformController::get<engine::platform::PlatformController>();
-    auto mouse = platform->mouse();
 
-    camera->zoom(mouse.scroll);
+    camera->zoom(position.dy);
     graphics->perspective_params().FOV = glm::radians(camera->Zoom);
 }
 
-void app::MainPlatformEventObserver::on_window_resize(int width, int height) {
-    // jos uvek nista
-}
+void app::MainPlatformEventObserver::on_window_resize(int width, int height) {}
 
 void MainController::initialize() {
     auto platform = engine::platform::PlatformController::get<engine::platform::PlatformController>();
@@ -57,6 +53,12 @@ void MainController::initialize() {
     camera->Position = glm::vec3(7.0f, 2.0f, -2.0f);
     camera->Yaw = 170.0f;
     camera->Pitch = -15.0f;
+
+    auto blurShader = resources->shader("blur");
+    auto finalShader = resources->shader("final");
+
+    bloom.init(platform->window()->width(), platform->window()->height(), blurShader, finalShader);
+
     spdlog::info("MainController initialized !");
 }
 
@@ -88,13 +90,15 @@ void MainController::update() {
     update_camera();
     auto platform = engine::core::Controller::get<engine::platform::PlatformController>();
 
+    timeAccumulator += platform->dt();
+
     if (!submarineActive && platform->key(engine::platform::KeyId::KEY_LEFT).is_down()) {
         submarineActive = true;
         submarineVisible = true;
         submarineTimer = 0.0f;
 
         submarineCounter++;
-        submarineFromLeft = (submarineCounter % 2 == 0);// određujemo pravac samo ovde
+        submarineFromLeft = (submarineCounter % 2 == 0);
     }
 
     if (submarineActive) {
@@ -124,6 +128,26 @@ void MainController::draw_busStop() {
     shader->set_vec3("dirLight.diffuse", glm::vec3(0.6f));
     shader->set_vec3("dirLight.specular", glm::vec3(1.0f));
 
+    glm::vec3 jellyfishPositions[4] = {
+            glm::vec3(5.0f, 0.0f, 0.0f),
+            glm::vec3(2.0f, 0.0f, -5.0f),
+            glm::vec3(-6.0f, 0.0f, 0.0f),
+            glm::vec3(-3.0f, 0.0f, 8.0f)
+    };
+
+    for (int i = 0; i < 4; ++i) {
+        std::string idx = std::to_string(i);
+        shader->set_vec3("pointLights[" + idx + "].position", jellyfishPositions[i]);
+        shader->set_vec3("pointLights[" + idx + "].ambient", glm::vec3(0.05f));
+        shader->set_vec3("pointLights[" + idx + "].diffuse", glm::vec3(0.8f, 0.2f, 1.0f));
+        shader->set_vec3("pointLights[" + idx + "].specular", glm::vec3(1.0f));
+
+        shader->set_float("pointLights[" + idx + "].constant", 1.0f);
+        shader->set_float("pointLights[" + idx + "].linear", 0.09f);
+        shader->set_float("pointLights[" + idx + "].quadratic", 0.032f);
+    }
+
+
     shader->set_mat4("projection", graphics->projection_matrix());
     shader->set_mat4("view", graphics->camera()->view_matrix());
     glm::mat4 model = glm::mat4(1.0f);
@@ -142,40 +166,9 @@ void MainController::draw_jellyfish() {
     auto graphics = engine::core::Controller::get<engine::graphics::GraphicsController>();
     engine::resources::Model *jellyfish = resource->model("jellyfish");
     //shader
-    engine::resources::Shader *shader = resource->shader("basic");
+    engine::resources::Shader *shader = resource->shader("jellyfish");
     shader->use();
 
-    // float time = glfwGetTime();
-
-    /* float t = (sin(time) + 1.0f) / 2.0f;
-
-     // Interpolacija između dve boje
-     glm::vec3 purple = glm::vec3(0.6f, 0.0f, 0.8f);
-     glm::vec3 blue = glm::vec3(0.0f, 0.5f, 1.0f);
-     glm::vec3 animatedColor = (1.0f - t) * purple + t * blue;*/
-
-    glm::vec3 jellyfishPositions[4] = {
-            glm::vec3(5.0f, 0.0f, 0.0f),
-            glm::vec3(2.0f, 0.0f, -5.0f),
-            glm::vec3(-6.0f, 0.0f, 0.0f),
-            glm::vec3(-3.0f, 0.0f, 5.0f)
-    };
-
-    glm::vec3 animatedColor = glm::vec3(0.6f, 0.0f, 0.8f);
-
-    for (int i = 0; i < 4; ++i) {
-        std::string idx = std::to_string(i);
-        shader->set_vec3("pointLights[" + idx + "].position", jellyfishPositions[i]);
-        shader->set_vec3("pointLights[" + idx + "].ambient", animatedColor * 0.05f);
-        shader->set_vec3("pointLights[" + idx + "].diffuse", animatedColor * 0.8f);
-        shader->set_vec3("pointLights[" + idx + "].specular", glm::vec3(1.0f));
-
-        shader->set_float("pointLights[" + idx + "].constant", 1.0f);
-        shader->set_float("pointLights[" + idx + "].linear", 0.09f);
-        shader->set_float("pointLights[" + idx + "].quadratic", 0.032f);
-    }
-
-    shader->set_vec3("viewPos", graphics->camera()->Position);
 
     shader->set_mat4("projection", graphics->projection_matrix());
     shader->set_mat4("view", graphics->camera()->view_matrix());
@@ -184,6 +177,17 @@ void MainController::draw_jellyfish() {
     // model = glm::rotate(model, glm::radians(90.0f), glm::vec3(1.0f, 1.0f, 1.0f));
     model = glm::scale(model, glm::vec3(0.8f));
     shader->set_mat4("model", model);
+
+    float t = (sin(timeAccumulator * 0.8f) + 1.0f) / 2.0f;
+
+    glm::vec3 blue = glm::vec3(0.0f, 0.3f, 1.0f);
+    glm::vec3 purple = glm::vec3(0.8f, 0.1f, 1.0f);
+
+    glm::vec3 emissiveColor = glm::mix(blue, purple, t);
+
+    shader->set_vec3("emissive", emissiveColor);
+    shader->set_float("emissiveStrength", 5.0f);
+
 
     jellyfish->draw(shader);
     glm::mat4 model2 = glm::mat4(1.0f);
@@ -199,7 +203,7 @@ void MainController::draw_jellyfish() {
     jellyfish->draw(shader);
 
     glm::mat4 model4 = glm::mat4(1.0f);
-    model3 = glm::translate(model4, glm::vec3(-3.0f, 0.0f, 5.0f));
+    model3 = glm::translate(model4, glm::vec3(-3.0f, 0.0f, 8.0f));
     model3 = glm::scale(model4, glm::vec3(0.8f));
     shader->set_mat4("model", model4);
     jellyfish->draw(shader);
@@ -221,6 +225,25 @@ void MainController::draw_submarine() {
     shader->set_vec3("dirLight.ambient", glm::vec3(0.2f));
     shader->set_vec3("dirLight.diffuse", glm::vec3(0.6f));
     shader->set_vec3("dirLight.specular", glm::vec3(1.0f));
+
+    glm::vec3 jellyfishPositions[4] = {
+            glm::vec3(5.0f, 0.0f, 0.0f),
+            glm::vec3(2.0f, 0.0f, -5.0f),
+            glm::vec3(-6.0f, 0.0f, 0.0f),
+            glm::vec3(-3.0f, 0.0f, 8.0f)
+    };
+
+    for (int i = 0; i < 4; ++i) {
+        std::string idx = std::to_string(i);
+        shader->set_vec3("pointLights[" + idx + "].position", jellyfishPositions[i]);
+        shader->set_vec3("pointLights[" + idx + "].ambient", glm::vec3(0.05f));
+        shader->set_vec3("pointLights[" + idx + "].diffuse", glm::vec3(0.8f, 0.2f, 1.0f));
+        shader->set_vec3("pointLights[" + idx + "].specular", glm::vec3(1.0f));
+
+        shader->set_float("pointLights[" + idx + "].constant", 1.0f);
+        shader->set_float("pointLights[" + idx + "].linear", 0.09f);
+        shader->set_float("pointLights[" + idx + "].quadratic", 0.032f);
+    }
 
     shader->set_mat4("projection", graphics->projection_matrix());
     shader->set_mat4("view", graphics->camera()->view_matrix());
@@ -260,7 +283,7 @@ void MainController::draw_gary() {
     if (!garyVisible) return;
     auto resource = engine::core::Controller::get<engine::resources::ResourcesController>();
     auto graphics = engine::core::Controller::get<engine::graphics::GraphicsController>();
-    engine::resources::Model *bus = resource->model("gary");
+    engine::resources::Model *gary = resource->model("gary");
     //shader
     engine::resources::Shader *shader = resource->shader("basic");
     shader->use();
@@ -270,6 +293,25 @@ void MainController::draw_gary() {
     shader->set_vec3("dirLight.diffuse", glm::vec3(0.6f));
     shader->set_vec3("dirLight.specular", glm::vec3(1.0f));
 
+    glm::vec3 jellyfishPositions[4] = {
+            glm::vec3(5.0f, 0.0f, 0.0f),
+            glm::vec3(2.0f, 0.0f, -5.0f),
+            glm::vec3(-6.0f, 0.0f, 0.0f),
+            glm::vec3(-3.0f, 0.0f, 8.0f)
+    };
+
+    for (int i = 0; i < 4; ++i) {
+        std::string idx = std::to_string(i);
+        shader->set_vec3("pointLights[" + idx + "].position", jellyfishPositions[i]);
+        shader->set_vec3("pointLights[" + idx + "].ambient", glm::vec3(0.05f));
+        shader->set_vec3("pointLights[" + idx + "].diffuse", glm::vec3(0.8f, 0.2f, 1.0f));
+        shader->set_vec3("pointLights[" + idx + "].specular", glm::vec3(1.0f));
+
+        shader->set_float("pointLights[" + idx + "].constant", 1.0f);
+        shader->set_float("pointLights[" + idx + "].linear", 0.09f);
+        shader->set_float("pointLights[" + idx + "].quadratic", 0.032f);
+    }
+
     shader->set_mat4("projection", graphics->projection_matrix());
     shader->set_mat4("view", graphics->camera()->view_matrix());
     glm::mat4 model = glm::mat4(1.0f);
@@ -278,7 +320,7 @@ void MainController::draw_gary() {
     model = glm::scale(model, glm::vec3(0.004f));
     shader->set_mat4("model", model);
 
-    bus->draw(shader);
+    gary->draw(shader);
 
 }
 
@@ -344,7 +386,7 @@ void MainController::draw_sand() {
 
 }
 
-void MainController::begin_draw() { engine::graphics::OpenGL::clear_buffers(); }
+void MainController::begin_draw() { bloom.begin_frame(); }
 
 void MainController::draw_skybox() {
     auto resources = engine::core::Controller::get<engine::resources::ResourcesController>();
@@ -365,6 +407,7 @@ void MainController::draw() {
 
 void MainController::end_draw() {
     auto platform = engine::core::Controller::get<engine::platform::PlatformController>();
+    bloom.end_frame();
     platform->swap_buffers();
 }
 

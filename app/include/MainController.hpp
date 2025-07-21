@@ -1,23 +1,16 @@
 #ifndef MAINCONTROLLER_HPP
 #define MAINCONTROLLER_HPP
 #include <engine/core/Controller.hpp>
+#include <engine/graphics/GraphicsController.hpp>
+#include <engine/graphics/Bloom.hpp>
 
 namespace app {
 
 class MainController : public engine::core::Controller {
+
     void initialize() override;
 
     bool loop() override;
-
-    void draw_busStop();
-
-    void draw_jellyfish();
-
-    void draw_submarine();
-
-    void draw_gary();
-
-    void draw_sand();
 
     void begin_draw() override;
 
@@ -26,8 +19,6 @@ class MainController : public engine::core::Controller {
     void update() override;
 
     void draw() override;
-
-    void draw_skybox();
 
     void end_draw() override;
 
@@ -45,6 +36,22 @@ class MainController : public engine::core::Controller {
 
 public:
     std::string_view name() const override { return "app::MainController"; }
+
+private:
+    engine::graphics::Bloom bloom;
+    float timeAccumulator = 0.0f;
+
+    void draw_busStop();
+
+    void draw_jellyfish();
+
+    void draw_submarine();
+
+    void draw_gary();
+
+    void draw_sand();
+
+    void draw_skybox();
 
 };
 }
