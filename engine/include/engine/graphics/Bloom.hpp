@@ -21,6 +21,8 @@ public:
 
     void resize(int newWidth, int newHeight);
 
+    void update_resize();
+
 private:
     void renderQuad();
 

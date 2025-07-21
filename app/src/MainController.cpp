@@ -124,15 +124,15 @@ void MainController::draw_busStop() {
     shader->use();
 
     shader->set_vec3("dirLight.direction", glm::vec3(-1.0f, -1.0f, -1.0f));
-    shader->set_vec3("dirLight.ambient", glm::vec3(0.2f));
-    shader->set_vec3("dirLight.diffuse", glm::vec3(0.6f));
+    shader->set_vec3("dirLight.ambient", glm::vec3(0.05f, 0.1f, 0.12f));
+    shader->set_vec3("dirLight.diffuse", glm::vec3(0.2f, 0.3f, 0.4f));
     shader->set_vec3("dirLight.specular", glm::vec3(1.0f));
 
     glm::vec3 jellyfishPositions[4] = {
-            glm::vec3(5.0f, 0.0f, 0.0f),
-            glm::vec3(2.0f, 0.0f, -5.0f),
-            glm::vec3(-6.0f, 0.0f, 0.0f),
-            glm::vec3(-3.0f, 0.0f, 8.0f)
+            glm::vec3(7.0f, 0.0f, -2.0f),
+            glm::vec3(3.0f, 1.5f, -8.0f),
+            glm::vec3(-7.0f, 2.0f, 2.0f),
+            glm::vec3(1.0f, 0.5f, 3.0f)
     };
 
     for (int i = 0; i < 4; ++i) {
@@ -173,7 +173,7 @@ void MainController::draw_jellyfish() {
     shader->set_mat4("projection", graphics->projection_matrix());
     shader->set_mat4("view", graphics->camera()->view_matrix());
     glm::mat4 model = glm::mat4(1.0f);
-    model = glm::translate(model, glm::vec3(5.0f, 0.0f, 0.0f));
+    model = glm::translate(model, glm::vec3(7.0f, 0.0f, -2.0f));
     // model = glm::rotate(model, glm::radians(90.0f), glm::vec3(1.0f, 1.0f, 1.0f));
     model = glm::scale(model, glm::vec3(0.8f));
     shader->set_mat4("model", model);
@@ -186,25 +186,25 @@ void MainController::draw_jellyfish() {
     glm::vec3 emissiveColor = glm::mix(blue, purple, t);
 
     shader->set_vec3("emissive", emissiveColor);
-    shader->set_float("emissiveStrength", 5.0f);
+    shader->set_float("emissiveStrength", 7.0f);
 
 
     jellyfish->draw(shader);
     glm::mat4 model2 = glm::mat4(1.0f);
-    model2 = glm::translate(model2, glm::vec3(2.0f, 0.0f, -5.0f));
+    model2 = glm::translate(model2, glm::vec3(3.0f, 1.5f, -8.0f));
     model2 = glm::scale(model2, glm::vec3(0.8f));
     shader->set_mat4("model", model2);
     jellyfish->draw(shader);
 
     glm::mat4 model3 = glm::mat4(1.0f);
-    model3 = glm::translate(model3, glm::vec3(-6.0f, 0.0f, 0.0f));
+    model3 = glm::translate(model3, glm::vec3(-7.0f, 2.0f, 2.0f));
     model3 = glm::scale(model3, glm::vec3(0.8f));
     shader->set_mat4("model", model3);
     jellyfish->draw(shader);
 
     glm::mat4 model4 = glm::mat4(1.0f);
-    model3 = glm::translate(model4, glm::vec3(-3.0f, 0.0f, 8.0f));
-    model3 = glm::scale(model4, glm::vec3(0.8f));
+    model4 = glm::translate(model4, glm::vec3(1.0f, 0.5f, 3.0f));
+    model4 = glm::scale(model4, glm::vec3(0.8f));
     shader->set_mat4("model", model4);
     jellyfish->draw(shader);
 
@@ -227,10 +227,10 @@ void MainController::draw_submarine() {
     shader->set_vec3("dirLight.specular", glm::vec3(1.0f));
 
     glm::vec3 jellyfishPositions[4] = {
-            glm::vec3(5.0f, 0.0f, 0.0f),
-            glm::vec3(2.0f, 0.0f, -5.0f),
-            glm::vec3(-6.0f, 0.0f, 0.0f),
-            glm::vec3(-3.0f, 0.0f, 8.0f)
+            glm::vec3(7.0f, 0.0f, -2.0f),
+            glm::vec3(3.0f, 1.5f, -8.0f),
+            glm::vec3(-7.0f, 2.0f, 2.0f),
+            glm::vec3(1.0f, 0.5f, 3.0f)
     };
 
     for (int i = 0; i < 4; ++i) {
@@ -294,10 +294,10 @@ void MainController::draw_gary() {
     shader->set_vec3("dirLight.specular", glm::vec3(1.0f));
 
     glm::vec3 jellyfishPositions[4] = {
-            glm::vec3(5.0f, 0.0f, 0.0f),
-            glm::vec3(2.0f, 0.0f, -5.0f),
-            glm::vec3(-6.0f, 0.0f, 0.0f),
-            glm::vec3(-3.0f, 0.0f, 8.0f)
+            glm::vec3(7.0f, 0.0f, -2.0f),
+            glm::vec3(3.0f, 1.5f, -8.0f),
+            glm::vec3(-7.0f, 2.0f, 2.0f),
+            glm::vec3(1.0f, 0.5f, 3.0f)
     };
 
     for (int i = 0; i < 4; ++i) {
@@ -365,10 +365,10 @@ void MainController::draw_sand() {
     shader->set_vec3("dirLight.specular", glm::vec3(1.0f));
 
     glm::vec3 jellyfishPositions[4] = {
-            glm::vec3(5.0f, 0.0f, 0.0f),
-            glm::vec3(2.0f, 0.0f, -5.0f),
-            glm::vec3(-6.0f, 0.0f, 0.0f),
-            glm::vec3(-3.0f, 0.0f, 5.0f)
+            glm::vec3(7.0f, 0.0f, -2.0f),
+            glm::vec3(3.0f, 1.5f, -8.0f),
+            glm::vec3(-7.0f, 2.0f, 2.0f),
+            glm::vec3(1.0f, 0.5f, 3.0f)
     };
 
     for (int i = 0; i < 4; ++i) {
@@ -397,6 +397,7 @@ void MainController::draw_skybox() {
 }
 
 void MainController::draw() {
+    bloom.update_resize();
     draw_busStop();
     draw_jellyfish();
     draw_submarine();

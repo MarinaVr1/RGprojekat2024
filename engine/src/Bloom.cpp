@@ -1,4 +1,5 @@
 #include <engine/graphics/Bloom.hpp>
+#include <engine/platform/PlatformController.hpp>
 #include <glad/glad.h>
 #include <spdlog/spdlog.h>
 
@@ -136,12 +137,6 @@ void Bloom::render() {
 
 void Bloom::resize(int newWidth, int newHeight) {
 
-    spdlog::info(">>> BLOOM RESIZE: {} x {}", newWidth, newHeight);
-
-    if (!shaderBlur_ || !shaderFinal_) {
-        spdlog::error("!!! ERROR: shaderBlur_ or shaderFinal_ is null! Resize aborted.");
-        return;
-    }
     if (newWidth == width_ && newHeight == height_) return;
 
     width_ = newWidth;
@@ -168,3 +163,10 @@ void Bloom::end_frame() {
     glEnable(GL_DEPTH_TEST);
 }
 
+void Bloom::update_resize() {
+    auto platform = engine::platform::PlatformController::get<engine::platform::PlatformController>();
+    int currentWidth = platform->window()->width();
+    int currentHeight = platform->window()->height();
+
+    if (currentWidth != width_ || currentHeight != height_) { if (shaderBlur_ && shaderFinal_) { resize(currentWidth, currentHeight); } }
+}
