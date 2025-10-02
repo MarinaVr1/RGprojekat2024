@@ -42,11 +42,11 @@ In GUI, attenuation of point lights can be modified, and also their positions.
 [ ] Frame-buffers with post-processing   
 [ ] Instancing  
 [ ] Off-screen Anti-Aliasing  
-[ ] Parallax Mapping
+[ yes ] Parallax Mapping
 
 ### Group B:
 
-[ ] Bloom with the use of HDR  
+[ yes ] Bloom with the use of HDR  
 [ ] Deferred Shading  
 [ ] Point Shadows  
 [ ] SSAO
