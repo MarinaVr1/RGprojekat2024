@@ -8,6 +8,15 @@ namespace app {
 
 class MainController : public engine::core::Controller {
 public:
+    std::string_view name() const override { return "app::MainController"; }
+
+private:
+    engine::graphics::Bloom bloom;
+    float timeAccumulator = 0.0f;
+    bool submarineFromLeft = false;
+
+    bool garyVisible = true;
+
     void initialize() override;
 
     bool loop() override;
@@ -29,16 +38,6 @@ public:
     float submarineTimer = 0.0f;
 
     int submarineCounter = 0;
-
-    bool submarineFromLeft = false;
-
-    bool garyVisible = true;
-
-    std::string_view name() const override { return "app::MainController"; }
-
-private:
-    engine::graphics::Bloom bloom;
-    float timeAccumulator = 0.0f;
 
     void draw_busStop();
 
