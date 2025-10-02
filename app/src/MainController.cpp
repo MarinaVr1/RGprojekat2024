@@ -94,7 +94,7 @@ void MainController::update() {
     update_camera();
     auto platform = engine::core::Controller::get<engine::platform::PlatformController>();
 
-    timeAccumulator += platform->dt();
+    auto frameTime = platform->frame_time();
 
     if (!submarineActive && platform->key(engine::platform::KeyId::KEY_LEFT).is_down()) {
         submarineActive = true;
@@ -106,7 +106,7 @@ void MainController::update() {
     }
 
     if (submarineActive) {
-        submarineTimer += platform->dt();
+        submarineTimer += frameTime.dt;
 
         if (submarineTimer > 1.0f && submarineTimer < 1.5f) { if (submarineCounter % 2 == 1) { garyVisible = false; } else { garyVisible = true; } }
 
