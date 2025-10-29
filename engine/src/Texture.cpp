@@ -13,6 +13,8 @@ std::string_view texture_type_to_string(TextureType type) {
     }
 }
 
+void Texture::set_type(TextureType type) { m_type = type; }
+
 void Texture::destroy() {
     glDeleteTextures(1, &m_id);
 }

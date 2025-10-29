@@ -1,6 +1,26 @@
 {
   "resources": {
     "models": {
+      "underwater_stop": {
+        "path": "underwater_stop/underwater_stop.obj",
+        "flip_uvs": true
+      },
+      "jellyfish": {
+        "path": "jellyfish/Jellyfish2.obj",
+        "flip_uvs": true
+      },
+      "submarine": {
+        "path": "submarine/submarine.fbx",
+        "flip_uvs": true
+      },
+      "gary": {
+        "path": "gary/Gary.FBX",
+        "flip_uvs": true
+      },
+      "sand": {
+        "path": "sand/plane3.obj",
+        "flip_uvs": true
+      }
     }
   },
   "window": {

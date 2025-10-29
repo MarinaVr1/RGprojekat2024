@@ -1,0 +1,308 @@
+# Blender 4.4.3 MTL File: 'None'
+# www.blender.org
+
+newmtl basg
+Ns 200.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd bag_lambert12_BaseColor.png
+map_Bump -bm 1.000000 bag_lambert12_Normal.png
+
+newmtl basg.001
+Ns 200.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd bag_lambert12_BaseColor.png
+map_Bump -bm 1.000000 bag_lambert12_Normal.png
+
+newmtl blinn1
+Ns 63.117920
+Ka 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 1
+map_Kd pufferfishsmooth_pufferfishlowuv_initialShadingGroup_BaseColor.png
+map_Ks pufferfishsmooth_pufferfishlowuv_initialShadingGroup_Specular.png
+map_Bump -bm 1.000000 pufferfishsmooth_pufferfishlowuv_initialShadingGroup_Normal.png
+
+newmtl blinn1.001
+Ns 63.117920
+Ka 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 1
+map_Kd pufferfishsmooth_pufferfishlowuv_initialShadingGroup_BaseColor.png
+map_Ks pufferfishsmooth_pufferfishlowuv_initialShadingGroup_Specular.png
+map_Bump -bm 1.000000 pufferfishsmooth_pufferfishlowuv_initialShadingGroup_Normal.png
+
+newmtl buss_stop
+Ns 200.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd buss_stop_lambert1_BaseColor.png
+map_Bump -bm 1.000000 buss_stop_lambert1_Normal.png
+
+newmtl buss_stop.001
+Ns 200.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd buss_stop_lambert1_BaseColor.png
+map_Bump -bm 1.000000 buss_stop_lambert1_Normal.png
+
+newmtl coral
+Ns 200.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd coral_2_lambert1_BaseColor.png
+map_Bump -bm 1.000000 coral_2_lambert1_Normal.png
+
+newmtl coral.001
+Ns 200.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd coral_2_lambert1_BaseColor.png
+map_Bump -bm 1.000000 coral_2_lambert1_Normal.png
+
+newmtl coral3
+Ns 200.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd coral_3_lambert1_BaseColor.png
+map_Bump -bm 1.000000 coral_3_lambert1_Normal.png
+
+newmtl coral3.001
+Ns 200.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd coral_3_lambert1_BaseColor.png
+map_Bump -bm 1.000000 coral_3_lambert1_Normal.png
+
+newmtl lambert11
+Ns 200.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd Penguin_Default_BaseColor.png
+map_Bump -bm 1.000000 Penguin_Default_Normal.png
+
+newmtl lambert11.001
+Ns 200.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd Penguin_Default_BaseColor.png
+map_Bump -bm 1.000000 Penguin_Default_Normal.png
+
+newmtl lambert13
+Ns 200.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd seaweed_2_lambert1_BaseColor.png
+
+newmtl lambert13.001
+Ns 200.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd seaweed_2_lambert1_BaseColor.png
+
+newmtl lambert14
+Ns 200.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd ground_lambert8_BaseColor.png
+map_Bump -bm 1.000000 ground_lambert1_Normal.png
+
+newmtl lambert14.001
+Ns 200.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd ground_lambert8_BaseColor.png
+map_Bump -bm 1.000000 ground_lambert1_Normal.png
+
+newmtl lambert16
+Ns 200.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd coral_lambert1_BaseColor.png
+map_Bump -bm 1.000000 coral_lambert1_Normal.png
+
+newmtl lambert16.001
+Ns 200.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd coral_lambert1_BaseColor.png
+map_Bump -bm 1.000000 coral_lambert1_Normal.png
+
+newmtl lambert6
+Ns 200.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd bench_lambert1_BaseColor.png
+map_Bump -bm 1.000000 bench_lambert1_Normal.png
+
+newmtl lambert6.001
+Ns 200.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd bench_lambert1_BaseColor.png
+map_Bump -bm 1.000000 bench_lambert1_Normal.png
+
+newmtl lambert7
+Ns 200.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd starfish_lambert1_BaseColor.png
+map_Bump -bm 1.000000 starfish_lambert1_Normal.png
+
+newmtl lambert7.001
+Ns 200.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd starfish_lambert1_BaseColor.png
+map_Bump -bm 1.000000 starfish_lambert1_Normal.png
+
+newmtl lambert9
+Ns 200.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd shell_lambert1_BaseColor.png
+map_Bump -bm 1.000000 shell_lambert1_Normal.png
+
+newmtl lambert9.001
+Ns 200.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd shell_lambert1_BaseColor.png
+map_Bump -bm 1.000000 shell_lambert1_Normal.png
+
+newmtl rock
+Ns 200.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd rock_lambert1_BaseColor.png
+map_Bump -bm 1.000000 rock_lambert1_Normal.png
+
+newmtl rock.001
+Ns 200.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd rock_lambert1_BaseColor.png
+map_Bump -bm 1.000000 rock_lambert1_Normal.png
+
+newmtl sign
+Ns 200.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd ray sign_lambert1_BaseColor.png
+map_Bump -bm 1.000000 ray sign_lambert1_Normal.png
+
+newmtl sign.001
+Ns 200.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd ray sign_lambert1_BaseColor.png
+map_Bump -bm 1.000000 ray sign_lambert1_Normal.png
