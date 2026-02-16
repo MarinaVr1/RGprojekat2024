@@ -1,0 +1,318 @@
+{
+	"archive" : {},
+	"artifacts" : 
+	[
+		{
+			"path" : "engine/libmatf-rg-engined.a"
+		}
+	],
+	"backtrace" : 1,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"add_library",
+			"target_link_libraries",
+			"add_compile_definitions",
+			"target_include_directories"
+		],
+		"files" : 
+		[
+			"engine/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 28,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 33,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 18,
+				"parent" : 0
+			},
+			{
+				"command" : 3,
+				"file" : 0,
+				"line" : 32,
+				"parent" : 0
+			}
+		]
+	},
+	"compileGroups" : 
+	[
+		{
+			"compileCommandFragments" : 
+			[
+				{
+					"fragment" : "-g"
+				},
+				{
+					"fragment" : "-std=c++23"
+				}
+			],
+			"defines" : 
+			[
+				{
+					"backtrace" : 2,
+					"define" : "IMGUI_IMPL_OPENGL_LOADER_GLAD"
+				},
+				{
+					"backtrace" : 3,
+					"define" : "RG_ENGINE_TRACE"
+				},
+				{
+					"backtrace" : 3,
+					"define" : "SPDLOG_ACTIVE_LEVEL=SPDLOG_LEVEL_TRACE"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "SPDLOG_COMPILED_LIB"
+				},
+				{
+					"backtrace" : 3,
+					"define" : "SPDLOG_DEBUG_ON"
+				},
+				{
+					"backtrace" : 3,
+					"define" : "SPDLOG_TRACE_ON"
+				}
+			],
+			"includes" : 
+			[
+				{
+					"backtrace" : 4,
+					"path" : "/home/marina/RGprojekat2024/engine/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/home/marina/RGprojekat2024/engine/libs/glad/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/home/marina/RGprojekat2024/engine/libs/glfw/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/home/marina/RGprojekat2024/engine/libs/assimp/code/../include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/home/marina/RGprojekat2024/engine/libs/stb/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/home/marina/RGprojekat2024/engine/libs/glm"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/home/marina/RGprojekat2024/engine/libs/spdlog/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/home/marina/RGprojekat2024/engine/libs/imgui/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/home/marina/RGprojekat2024/engine/libs/json/include"
+				}
+			],
+			"language" : "CXX",
+			"languageStandard" : 
+			{
+				"backtraces" : 
+				[
+					1
+				],
+				"standard" : "23"
+			},
+			"sourceIndexes" : 
+			[
+				0,
+				1,
+				2,
+				3,
+				4,
+				5,
+				6,
+				7,
+				8,
+				9,
+				10,
+				11,
+				12,
+				13
+			]
+		}
+	],
+	"dependencies" : 
+	[
+		{
+			"backtrace" : 2,
+			"id" : "spdlog::@58c7d5ff87cb1872927b"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "glfw::@16f2c84f83a77cf3daac"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "glad::@eddb94c60a93c473885a"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "assimp::@84175aa547b8e63bba20"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "stb::@d9d17e6d52fe4eee6daa"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "imgui::@9b5d6b30a625d49d00d6"
+		}
+	],
+	"id" : "matf-rg-engine::@4088515cb4035b412499",
+	"name" : "matf-rg-engine",
+	"nameOnDisk" : "libmatf-rg-engined.a",
+	"paths" : 
+	{
+		"build" : "engine",
+		"source" : "engine"
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "Source Files",
+			"sourceIndexes" : 
+			[
+				0,
+				1,
+				2,
+				3,
+				4,
+				5,
+				6,
+				7,
+				8,
+				9,
+				10,
+				11,
+				12,
+				13
+			]
+		},
+		{
+			"name" : "Header Files",
+			"sourceIndexes" : 
+			[
+				14
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "engine/src/App.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "engine/src/Bloom.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "engine/src/Camera.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "engine/src/Errors.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "engine/src/GraphicsController.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "engine/src/Mesh.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "engine/src/Model.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "engine/src/OpenGL.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "engine/src/PlatformController.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "engine/src/ResourcesController.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "engine/src/Shader.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "engine/src/ShaderCompiler.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "engine/src/Texture.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "engine/src/Utils.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "engine/include/engine/graphics/Bloom.hpp",
+			"sourceGroupIndex" : 1
+		}
+	],
+	"type" : "STATIC_LIBRARY"
+}

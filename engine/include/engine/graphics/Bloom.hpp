@@ -9,6 +9,8 @@ public:
 
     ~Bloom();
 
+    void terminate();
+
     void init(int screenWidth, int screenHeight,
               engine::resources::Shader *shaderBlur,
               engine::resources::Shader *shaderFinal);

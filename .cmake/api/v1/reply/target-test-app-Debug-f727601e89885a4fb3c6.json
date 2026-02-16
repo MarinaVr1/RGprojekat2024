@@ -1,0 +1,265 @@
+{
+	"artifacts" : 
+	[
+		{
+			"path" : "engine/test/app/test-app"
+		}
+	],
+	"backtrace" : 1,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"add_executable",
+			"target_link_libraries",
+			"include_directories",
+			"target_compile_features"
+		],
+		"files" : 
+		[
+			"engine/test/app/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 8,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 9,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 7,
+				"parent" : 0
+			},
+			{
+				"command" : 3,
+				"file" : 0,
+				"line" : 10,
+				"parent" : 0
+			}
+		]
+	},
+	"compileGroups" : 
+	[
+		{
+			"compileCommandFragments" : 
+			[
+				{
+					"fragment" : "-g"
+				},
+				{
+					"fragment" : "-std=c++23"
+				}
+			],
+			"defines" : 
+			[
+				{
+					"backtrace" : 2,
+					"define" : "IMGUI_IMPL_OPENGL_LOADER_GLAD"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "SPDLOG_COMPILED_LIB"
+				}
+			],
+			"includes" : 
+			[
+				{
+					"backtrace" : 3,
+					"path" : "/home/marina/RGprojekat2024/engine/test/app/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/home/marina/RGprojekat2024/engine/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/home/marina/RGprojekat2024/engine/libs/glm"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/home/marina/RGprojekat2024/engine/libs/spdlog/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/home/marina/RGprojekat2024/engine/libs/imgui/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/home/marina/RGprojekat2024/engine/libs/json/include"
+				}
+			],
+			"language" : "CXX",
+			"languageStandard" : 
+			{
+				"backtraces" : 
+				[
+					4
+				],
+				"standard" : "23"
+			},
+			"sourceIndexes" : 
+			[
+				0,
+				1,
+				2
+			]
+		}
+	],
+	"dependencies" : 
+	[
+		{
+			"backtrace" : 2,
+			"id" : "matf-rg-engine::@4088515cb4035b412499"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "spdlog::@58c7d5ff87cb1872927b"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "glfw::@16f2c84f83a77cf3daac"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "glad::@eddb94c60a93c473885a"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "assimp::@84175aa547b8e63bba20"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "stb::@d9d17e6d52fe4eee6daa"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "imgui::@9b5d6b30a625d49d00d6"
+		}
+	],
+	"id" : "test-app::@ec6a6030d29a9a34d846",
+	"link" : 
+	{
+		"commandFragments" : 
+		[
+			{
+				"fragment" : "-g",
+				"role" : "flags"
+			},
+			{
+				"fragment" : "",
+				"role" : "flags"
+			},
+			{
+				"fragment" : "-L/usr/lib/gcc/x86_64-linux-gnu/11",
+				"role" : "libraryPath"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "../../libmatf-rg-engined.a",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "../../libs/assimp/lib/libassimpd.a",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/usr/lib/x86_64-linux-gnu/libz.a",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/usr/lib/x86_64-linux-gnu/libminizip.a",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "-lrt",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "../../libs/stb/libstbd.a",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "../../libs/spdlog/libspdlogd.a",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "../../libs/imgui/libimguid.a",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "../../libs/glad/libgladd.a",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "../../libs/glfw/src/libglfw3d.a",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/usr/lib/x86_64-linux-gnu/librt.a",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "-lm",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "-ldl",
+				"role" : "libraries"
+			}
+		],
+		"language" : "CXX"
+	},
+	"name" : "test-app",
+	"nameOnDisk" : "test-app",
+	"paths" : 
+	{
+		"build" : "engine/test/app",
+		"source" : "engine/test/app"
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "Source Files",
+			"sourceIndexes" : 
+			[
+				0,
+				1,
+				2
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "engine/test/app/src/GUIController.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "engine/test/app/src/MainController.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "engine/test/app/src/TestApp.cpp",
+			"sourceGroupIndex" : 0
+		}
+	],
+	"type" : "EXECUTABLE"
+}

@@ -50,10 +50,10 @@ public:
     /**
     * @brief Retrieves the @ref Skybox with a given name. You are not supposed to call `delete` on this pointer.
     *
-    * Other params, except name, are optional. If not provided the function will search for a skybox
+    * Other params, except name, are optional. If not provided the function will search for a ocean_skybox
     * in the: "resources/skyboxes".
-    * Images for the sides of the skybox cube should be named: left.jpg, right.jpg, top.jpg, bottom.jpg, front.jpg, back.jpg (any supported image extension).
-    * @param name of the skybox directory that contains 6 images for each side of the cube.
+    * Images for the sides of the ocean_skybox cube should be named: left.jpg, right.jpg, top.jpg, bottom.jpg, front.jpg, back.jpg (any supported image extension).
+    * @param name of the ocean_skybox directory that contains 6 images for each side of the cube.
     * @param path form which to load the texture.
     * @param flip_uvs flip the uvs on load if set to true
     * @returns The pointer to the @ref Skybox associated with the `name`.

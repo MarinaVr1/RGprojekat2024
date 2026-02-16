@@ -1,3 +1,5 @@
+#include <glad/glad.h>
+#include <GLFW/glfw3.h>
 #include <engine/graphics/Bloom.hpp>
 #include <engine/graphics/OpenGL.hpp>
 #include <engine/platform/PlatformController.hpp>
@@ -8,7 +10,11 @@ using namespace engine::graphics;
 
 Bloom::Bloom() = default;
 
-Bloom::~Bloom() {
+Bloom::~Bloom() = default;
+
+void Bloom::terminate() {
+    if (!glfwGetCurrentContext()) return;
+
     CHECKED_GL_CALL(glDeleteFramebuffers, 1, &hdrFBO);
     CHECKED_GL_CALL(glDeleteTextures, 2, colorBuffers);
     CHECKED_GL_CALL(glDeleteRenderbuffers, 1, &rboDepth);

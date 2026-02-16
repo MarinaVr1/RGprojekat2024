@@ -1,0 +1,518 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1,
+						16,
+						17
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.21"
+					},
+					"projectIndex" : 0,
+					"source" : "."
+				},
+				{
+					"build" : "engine",
+					"childIndexes" : 
+					[
+						2,
+						3,
+						6,
+						7,
+						8,
+						12,
+						13,
+						14
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-engine-Debug-c354d3a0ab769c0fb88c.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.21"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 1,
+					"source" : "engine",
+					"targetIndexes" : 
+					[
+						6
+					]
+				},
+				{
+					"build" : "engine/libs/spdlog",
+					"jsonFile" : "directory-engine.libs.spdlog-Debug-28c0570f900843130137.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 2,
+					"source" : "engine/libs/spdlog",
+					"targetIndexes" : 
+					[
+						7
+					]
+				},
+				{
+					"build" : "engine/libs/glfw",
+					"childIndexes" : 
+					[
+						4,
+						5
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-engine.libs.glfw-Debug-ff70f6e33a2435905344.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.4"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 3,
+					"source" : "engine/libs/glfw",
+					"targetIndexes" : 
+					[
+						10
+					]
+				},
+				{
+					"build" : "engine/libs/glfw/src",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-engine.libs.glfw.src-Debug-fac8b539715992237973.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.4"
+					},
+					"parentIndex" : 3,
+					"projectIndex" : 3,
+					"source" : "engine/libs/glfw/src",
+					"targetIndexes" : 
+					[
+						3,
+						12
+					]
+				},
+				{
+					"build" : "engine/libs/glfw/docs",
+					"jsonFile" : "directory-engine.libs.glfw.docs-Debug-f685c8155ebc487f9f4f.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.4"
+					},
+					"parentIndex" : 3,
+					"projectIndex" : 3,
+					"source" : "engine/libs/glfw/docs"
+				},
+				{
+					"build" : "engine/libs/glad",
+					"jsonFile" : "directory-engine.libs.glad-Debug-46d0d6163fd0889162a4.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.11"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 1,
+					"source" : "engine/libs/glad",
+					"targetIndexes" : 
+					[
+						2
+					]
+				},
+				{
+					"build" : "engine/libs/json",
+					"jsonFile" : "directory-engine.libs.json-Debug-6aef9d3519325b645933.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.21"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 1,
+					"source" : "engine/libs/json"
+				},
+				{
+					"build" : "engine/libs/assimp",
+					"childIndexes" : 
+					[
+						9,
+						10
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-engine.libs.assimp-Debug-1b87b076ef5a8fb02691.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.22"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 4,
+					"source" : "engine/libs/assimp"
+				},
+				{
+					"build" : "engine/libs/assimp/code",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-engine.libs.assimp.code-Debug-bb9d13d2df3bbff39865.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.22"
+					},
+					"parentIndex" : 8,
+					"projectIndex" : 4,
+					"source" : "engine/libs/assimp/code",
+					"targetIndexes" : 
+					[
+						1
+					]
+				},
+				{
+					"build" : "engine/libs/assimp/test",
+					"childIndexes" : 
+					[
+						11
+					],
+					"jsonFile" : "directory-engine.libs.assimp.test-Debug-305dd09cae3fdd3d00b7.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10"
+					},
+					"parentIndex" : 8,
+					"projectIndex" : 4,
+					"source" : "engine/libs/assimp/test",
+					"targetIndexes" : 
+					[
+						11
+					]
+				},
+				{
+					"build" : "engine/libs/assimp/test/headercheck",
+					"jsonFile" : "directory-engine.libs.assimp.test.headercheck-Debug-de5776921a53230e923d.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10"
+					},
+					"parentIndex" : 10,
+					"projectIndex" : 4,
+					"source" : "engine/libs/assimp/test/headercheck"
+				},
+				{
+					"build" : "engine/libs/stb",
+					"jsonFile" : "directory-engine.libs.stb-Debug-320c9843b242b01944f0.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.11"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 1,
+					"source" : "engine/libs/stb",
+					"targetIndexes" : 
+					[
+						8
+					]
+				},
+				{
+					"build" : "engine/libs/imgui",
+					"jsonFile" : "directory-engine.libs.imgui-Debug-8391f494b3f63655ee05.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.11"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 1,
+					"source" : "engine/libs/imgui",
+					"targetIndexes" : 
+					[
+						5
+					]
+				},
+				{
+					"build" : "engine/libs/glm",
+					"childIndexes" : 
+					[
+						15
+					],
+					"jsonFile" : "directory-engine.libs.glm-Debug-95ed8ddae92bd647a4c4.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.6"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 5,
+					"source" : "engine/libs/glm"
+				},
+				{
+					"build" : "engine/libs/glm/glm",
+					"jsonFile" : "directory-engine.libs.glm.glm-Debug-1eedd218314269fc70a2.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.6"
+					},
+					"parentIndex" : 14,
+					"projectIndex" : 5,
+					"source" : "engine/libs/glm/glm",
+					"targetIndexes" : 
+					[
+						4
+					]
+				},
+				{
+					"build" : "engine/test/app",
+					"jsonFile" : "directory-engine.test.app-Debug-1ff22255e289b86c2726.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.11"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "engine/test/app",
+					"targetIndexes" : 
+					[
+						9
+					]
+				},
+				{
+					"build" : "app",
+					"jsonFile" : "directory-app-Debug-94c5f210ca04b1028ae5.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.11"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 6,
+					"source" : "app",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"childIndexes" : 
+					[
+						1,
+						6
+					],
+					"directoryIndexes" : 
+					[
+						0,
+						16
+					],
+					"name" : "matf-rg-project",
+					"targetIndexes" : 
+					[
+						9
+					]
+				},
+				{
+					"childIndexes" : 
+					[
+						2,
+						3,
+						4,
+						5
+					],
+					"directoryIndexes" : 
+					[
+						1,
+						6,
+						7,
+						12,
+						13
+					],
+					"name" : "matf-rg-engine",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						2,
+						5,
+						6,
+						8
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						2
+					],
+					"name" : "spdlog",
+					"parentIndex" : 1,
+					"targetIndexes" : 
+					[
+						7
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						3,
+						4,
+						5
+					],
+					"name" : "GLFW",
+					"parentIndex" : 1,
+					"targetIndexes" : 
+					[
+						3,
+						10,
+						12
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						8,
+						9,
+						10,
+						11
+					],
+					"name" : "Assimp",
+					"parentIndex" : 1,
+					"targetIndexes" : 
+					[
+						1,
+						11
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						14,
+						15
+					],
+					"name" : "glm",
+					"parentIndex" : 1,
+					"targetIndexes" : 
+					[
+						4
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						17
+					],
+					"name" : "APP",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 17,
+					"id" : "APP::@5f5a17c01335469806cb",
+					"jsonFile" : "target-APP-Debug-fc30c89718229f8d1b4c.json",
+					"name" : "APP",
+					"projectIndex" : 6
+				},
+				{
+					"directoryIndex" : 9,
+					"id" : "assimp::@84175aa547b8e63bba20",
+					"jsonFile" : "target-assimp-Debug-274327349b163a1f40a1.json",
+					"name" : "assimp",
+					"projectIndex" : 4
+				},
+				{
+					"directoryIndex" : 6,
+					"id" : "glad::@eddb94c60a93c473885a",
+					"jsonFile" : "target-glad-Debug-00a32bb761c7a0bc5959.json",
+					"name" : "glad",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 4,
+					"id" : "glfw::@16f2c84f83a77cf3daac",
+					"jsonFile" : "target-glfw-Debug-8c835b94c842b8c7d194.json",
+					"name" : "glfw",
+					"projectIndex" : 3
+				},
+				{
+					"directoryIndex" : 15,
+					"id" : "glm::@1eea82323dc35113baac",
+					"jsonFile" : "target-glm-Debug-11a354caea439616544e.json",
+					"name" : "glm",
+					"projectIndex" : 5
+				},
+				{
+					"directoryIndex" : 13,
+					"id" : "imgui::@9b5d6b30a625d49d00d6",
+					"jsonFile" : "target-imgui-Debug-db1243b00ad34ec0b96f.json",
+					"name" : "imgui",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "matf-rg-engine::@4088515cb4035b412499",
+					"jsonFile" : "target-matf-rg-engine-Debug-e2a3ebeec343a6a0c4f0.json",
+					"name" : "matf-rg-engine",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "spdlog::@58c7d5ff87cb1872927b",
+					"jsonFile" : "target-spdlog-Debug-88c8d4e558cd690b8776.json",
+					"name" : "spdlog",
+					"projectIndex" : 2
+				},
+				{
+					"directoryIndex" : 12,
+					"id" : "stb::@d9d17e6d52fe4eee6daa",
+					"jsonFile" : "target-stb-Debug-215f9f14e87d5325a780.json",
+					"name" : "stb",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 16,
+					"id" : "test-app::@ec6a6030d29a9a34d846",
+					"jsonFile" : "target-test-app-Debug-f727601e89885a4fb3c6.json",
+					"name" : "test-app",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "uninstall::@e73db5aa92f369305cde",
+					"jsonFile" : "target-uninstall-Debug-d2fcb0692d043d90658e.json",
+					"name" : "uninstall",
+					"projectIndex" : 3
+				},
+				{
+					"directoryIndex" : 10,
+					"id" : "unit::@444680b018e8c026a2d3",
+					"jsonFile" : "target-unit-Debug-6a991bc783ec6d491dc4.json",
+					"name" : "unit",
+					"projectIndex" : 4
+				},
+				{
+					"directoryIndex" : 4,
+					"id" : "update_mappings::@16f2c84f83a77cf3daac",
+					"jsonFile" : "target-update_mappings-Debug-100bf633f199c84302f6.json",
+					"name" : "update_mappings",
+					"projectIndex" : 3
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/marina/RGprojekat2024",
+		"source" : "/home/marina/RGprojekat2024"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 3
+	}
+}
