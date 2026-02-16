@@ -42,6 +42,8 @@ void MainPlatformEventObserver::on_scroll(engine::platform::MousePosition positi
 
 void app::MainPlatformEventObserver::on_window_resize(int width, int height) {}
 
+void MainController::terminate() { bloom.terminate(); }
+
 void MainController::initialize() {
     auto platform = engine::platform::PlatformController::get<engine::platform::PlatformController>();
     platform->register_platform_event_observer(std::make_unique<MainPlatformEventObserver>());

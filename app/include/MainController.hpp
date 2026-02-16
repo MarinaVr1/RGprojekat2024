@@ -17,6 +17,8 @@ private:
 
     bool garyVisible = true;
 
+    void terminate() override;
+
     void initialize() override;
 
     bool loop() override;
