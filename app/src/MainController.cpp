@@ -198,7 +198,7 @@ void MainController::draw_submarine() {
     auto gui_controller = engine::core::Controller::get<GUIController>();
     auto resource = engine::core::Controller::get<engine::resources::ResourcesController>();
     auto graphics = engine::core::Controller::get<engine::graphics::GraphicsController>();
-    auto platform = engine::core::Controller::get<engine::platform::PlatformController>();
+    //auto platform = engine::core::Controller::get<engine::platform::PlatformController>();
 
     engine::resources::Model *submarine = resource->model("submarine");
     engine::resources::Shader *shader = resource->shader("basic");
