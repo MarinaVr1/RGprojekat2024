@@ -1,6 +1,7 @@
 #include <GUIController.hpp>
 #include <imgui.h>
 #include <algorithm>
+#include <array>
 #include <engine/platform/PlatformController.hpp>
 #include <glm/gtc/type_ptr.inl>
 
@@ -21,7 +22,7 @@ void app::GUIController::poll_events() {
 
 void app::GUIController::draw() {
     static int selected_tab = 0;
-    const char *tabs[] = {"Lights", "Camera", "Bloom", "Parallax"};
+    std::array<const char *, 4> tabs = {"Lights", "Camera", "Bloom", "Parallax"};
 
     auto graphics = engine::core::Controller::get<engine::graphics::GraphicsController>();
     graphics->begin_gui();
@@ -29,7 +30,7 @@ void app::GUIController::draw() {
     ImGui::Begin("Scene Controls");
 
     ImGui::BeginChild("Tabs", ImVec2(120, 0), true);
-    for (int i = 0; i < IM_ARRAYSIZE(tabs); ++i) { if (ImGui::Selectable(tabs[i], selected_tab == i)) { selected_tab = i; } }
+    for (int i = 0; i < static_cast<int>(tabs.size()); ++i) { if (ImGui::Selectable(tabs[i], selected_tab == i)) { selected_tab = i; } }
     ImGui::EndChild();
 
     ImGui::SameLine();
