@@ -173,7 +173,7 @@ void MainController::draw_jellyfish() {
     shader->set_mat4("view", graphics->camera()->view_matrix());
 
 
-    float t = (sin(timeAccumulator * 0.8f) + 1.0f) / 2.0f;
+    float t = (std::sin(timeAccumulator * 0.8f) + 1.0f) / 2.0f;
 
     glm::vec3 blue = glm::vec3(0.0f, 0.3f, 1.0f);
     glm::vec3 purple = glm::vec3(0.8f, 0.1f, 1.0f);
